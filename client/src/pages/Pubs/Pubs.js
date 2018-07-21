@@ -11,23 +11,24 @@ import { List, ListItem } from "../../components/List";
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 0
   },
   container: {
-    display: "grid",
-    wrap: "nowrap"
+    display: "grid"
+    // wrap: "nowrap"
     // gridTemplateColumns: "repeat(12, 1fr)",
     // gridGap: `${theme.spacing.unit * 3}px`,
     // direction: "column"
   },
   outerContainer: {
-    direction: "row"
+    direction: "row",
+    height: "90%"
   },
   rightContainer: {
-    direction: "column"
+    // direction: "column"
   },
   item: {
-    width: "100%"
+    width: "50%"
   },
   paper: {
     padding: theme.spacing.unit,
@@ -46,25 +47,40 @@ class Pubs extends Component {
   constructor(props) {
     super(props);
     this.classes = props;
-    this.propTypes = {
+    const propTypes = {
       classes: PropTypes.object.isRequired
     };
     this.state = {
       pubs: [],
       selected: {},
-      selectAll: 0
+      selectAll: 0,
+      markers: []
     };
     this.toggleRow = this.toggleRow.bind(this);
   }
   toggleRow(_id) {
     const newSelected = Object.assign({}, this.state.selected);
     newSelected[_id] = !this.state.selected[_id];
+    const markers = Object.keys(newSelected).map(
+      k => {
+        if (newSelected[k] === true) {
+          const pub = this.state.pubs.find(
+            e => {
+              return e._id === k
+            }
+          )
+          return (pub)
+        }
+
+      }
+    )
     this.setState({
       selectAll: 2,
-      selected: newSelected
+      selected: newSelected,
+      markers: markers
     });
 
-    console.log(Object.keys(this.state.selected));
+    if (this.markers) { console.log(`MARKERS: ${JSON.stringify(this.markers,null,2)}`)}
   }
   toggleSelectAll() {
     let newSelected = {};
@@ -93,7 +109,6 @@ class Pubs extends Component {
   };
 
   render() {
-
     const columns = [
       {
         Header: "Pub",
@@ -150,106 +165,43 @@ class Pubs extends Component {
 
     const classes = this.classes;
 
+
+
     return (
-      <Grid container outerContainer>
-
-        <Grid item>
-
-          <Grid container>
-
-            <Grid item>
-              <Paper className={classes.paper}>
-                <ReactTable
-                  data={this.state.pubs}
-                  columns={columns}
-                  // When any part of a row is clicked.
-                  getTdProps={(state, rowInfo, column, instance) => {
-                    return {
-                      onClick: (e, handleOriginal) => {
-                        console.log("A Td Element was clicked!");
-                        // console.log("it produced this event:", e);
-                        // console.log("It was in this column:", column);
-                        // console.log("It was in this row:", rowInfo);
-                        // console.log("It was in this table instance:", instance);
-                        console.log(`DB instance _id: ${rowInfo.original._id}`);
-                        this.toggleRow(rowInfo.original._id);
-                        // IMPORTANT! React-Table uses onClick internally to trigger
-                        // events like expanding SubComponents and pivots.
-                        // By default a custom 'onClick' handler will override this functionality.
-                        // If you want to fire the original onClick handler, call the
-                        // 'handleOriginal' function.
-                        if (handleOriginal) {
-                          handleOriginal();
-                        }
-                      }
-                    };
-                  }}
-                />
-              </Paper>
-            </Grid>
-
-          </Grid>
-
+      <Grid container styles={styles.outerContainer} spacing={24}>
+        <Grid item xs={6} styles={styles.item}>
+            <ReactTable
+              data={this.state.pubs}
+              columns={columns}
+              // When any part of a row is clicked.
+              getTdProps={(state, rowInfo, column, instance) => {
+                return {
+                  onClick: (e, handleOriginal) => {
+                    console.log("A Td Element was clicked!");
+                    // console.log("it produced this event:", e);
+                    // console.log("It was in this column:", column);
+                    // console.log("It was in this row:", rowInfo);
+                    // console.log("It was in this table instance:", instance);
+                    console.log(`DB instance _id: ${rowInfo.original._id}`);
+                    this.toggleRow(rowInfo.original._id);
+                    // IMPORTANT! React-Table uses onClick internally to trigger
+                    // events like expanding SubComponents and pivots.
+                    // By default a custom 'onClick' handler will override this functionality.
+                    // If you want to fire the original onClick handler, call the
+                    // 'handleOriginal' function.
+                    if (handleOriginal) {
+                      handleOriginal();
+                    }
+                  }
+                };
+              }}
+            />
         </Grid>
-
-        <Grid item>
-          <Grid container rightContainer>
-            <Grid item>
-              <Paper>
-                <List>
-                  {pubsSelected ? (
-                    Object.keys(this.state.selected).map(k => {
-                      if (this.state.selected[k] === true) {
-                        const pub = this.state.pubs.find(e => {
-                          return e._id === k;
-                        });
-                        return (
-                          <ListItem key={pub._id}>
-                            <strong>{pub.name}</strong>
-                          </ListItem>
-                        );
-                      }
-                    })
-                  ) : (
-                    <ListItem key={0}>
-                      <strong>No Pubs Selected</strong>
-                    </ListItem>
-                  )}
-                </List>
-              </Paper>
-            </Grid>
-
-            <Grid item>
-              <Maps />
-            </Grid>
-
-          </Grid>
+        <Grid item xs={6}>
+          <Maps markers={this.state.markers}/>
         </Grid>
       </Grid>
-
-      // <Grid columnContainer spacing={24}>
-      //   <Grid container spacing={12}>
-      //     <Grid item xs={12}>
-      //       <Paper className={classes.paper}>
-      //         PUBS
-      //       </Paper>
-      //     </Grid>
-      //   </Grid>
-      //   <Grid container spacing={12}>
-      //     <Grid item xs={6}>
-      //       <Paper>
-      //         SELECTED
-      //       </Paper>
-      //     </Grid>
-
-      //     <Grid item xs={6}>
-      //       <Paper>
-      //         MAP
-      //       </Paper>
-      //     </Grid>
-      //   </Grid>
-      // </Grid>
-    );
+      );
   }
 }
 

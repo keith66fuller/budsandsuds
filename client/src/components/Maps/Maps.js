@@ -12,6 +12,7 @@ class GoogleMapsContainer extends React.Component {
     // binding this to event-handler functions
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClick = this.onMapClick.bind(this);
+    console.log(`PROPS: ${JSON.stringify(props,null,2)}`)
   }
   onMarkerClick = (props, marker, e) => {
     this.setState({
@@ -28,23 +29,28 @@ class GoogleMapsContainer extends React.Component {
       });
     }
   }
-  render() {
+
+  render(props) {
     const style = {
-      width: '50vw',
-      height: '75vh',
+      width: '100%',
+      height: '80%',
       'marginLeft': 'auto',
       'marginRight': 'auto'
     }
+
     return (
       <Map
         item
-        xs = { 12 }
+        xs = { 6 }
         style = { style }
         google = { this.props.google }
         onClick = { this.onMapClick }
         zoom = { 12 }
         initialCenter = {{ lat: 41.8781, lng: -87.6298 }}
       >
+
+
+
         <Marker
           onClick = { this.onMarkerClick }
           title = { "Timothy O' Tooles" }
@@ -66,5 +72,5 @@ class GoogleMapsContainer extends React.Component {
   }
 }
 export default GoogleApiWrapper({
-    api: (process.env.AIzaSyCknAKZwXlq4aYDzhOtqK3EDK2nDk5e7Uw)
+    api: ("AIzaSyCknAKZwXlq4aYDzhOtqK3EDK2nDk5e7Uw")
 })(GoogleMapsContainer)
