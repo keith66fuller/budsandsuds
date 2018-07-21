@@ -8,6 +8,7 @@ import Buds from "./pages/Buds";
 import Crawls from "./pages/Crawls";
 import Pubs from "./pages/Pubs";
 import DbAdmin from "./pages/DbAdmin";
+// import selectTableTest from "./pages/selectTableTest";
 // import SearchTest from "./pages/SearchTest/SearchTest";
 
 const App = () => (
@@ -22,6 +23,7 @@ const App = () => (
         {/* <Route exact path="/Test" component={SearchTest} /> */}
         <Route exact path="/Pubs" component={Pubs} />
         <Route exact path="/DbAdmin" component={DbAdmin} />
+        {/* <Route exact path="/selectTableTest" component={selectTableTest} /> */}
         <Route component={NoMatch} />
       </Switch>
       <Footer />

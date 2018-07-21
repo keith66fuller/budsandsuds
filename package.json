@@ -27,7 +27,6 @@
     "express": "^4.15.4",
     "if-env": "^1.0.4",
     "mongoose": "^5.2.4",
-    "react-table-select": "^0.2.7",
     "yelp-fusion": "^2.0.3"
   }
 }
