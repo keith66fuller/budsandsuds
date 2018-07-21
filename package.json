@@ -13,7 +13,7 @@
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   },
-  "author": "",
+  "author": "allYourBase-AreBelongToUs",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^3.5.0",
@@ -29,5 +29,7 @@
     "if-env": "^1.0.4",
     "mongoose": "^5.2.4",
     "yelp-fusion": "^2.0.3"
-  }
+  },
+  "repository": "https://github.com/allYourBase-AreBelongToUs/budsandsuds.git",
+  "private": false
 }
