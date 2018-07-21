@@ -11,7 +11,7 @@ class Pubs extends Component {
       <React.Fragment>
         <Banner />
         <PubsComp />
-        {/* <Maps /> */}
+        <Maps />
       </React.Fragment>
     )
   }
