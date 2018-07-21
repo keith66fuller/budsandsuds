@@ -3,7 +3,8 @@ import React from "react";
 const Nav = () => (
 <nav className="white" role="navigation">
     <div className="nav-wrapper container">
-      <a id="logo-container" href="/Home" className="brand-logo gold-text">BUD'S N' SUDS</a>      <ul className="right hide-on-med-and-down">
+      <a id="logo-container" href="/Home" className="brand-logo gold-text">BUD'S N' SUDS</a>      
+      <ul className="right hide-on-med-and-down">
         <li><a href="/Profile">Profile</a></li>
       </ul>
 
