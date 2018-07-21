@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import API from "../../utils/API";
+import { List, ListItem } from "../../components/List";
 
 class DbAdmin extends Component {
   constructor(props) {
@@ -20,9 +21,12 @@ class DbAdmin extends Component {
     const newSelected = Object.assign({}, this.state.selected);
     newSelected[_id] = !this.state.selected[_id];
     this.setState({
-      selected: newSelected,
-      selectAll: 2
+      selectAll: 2,
+      selected: newSelected
     });
+
+    console.log(Object.keys(this.state.selected))
+    
   }
   toggleSelectAll() {
     let newSelected = {};
@@ -87,6 +91,16 @@ class DbAdmin extends Component {
       }
     ]
 
+    const columnsSel = [
+      {
+        Header: 'Pub',
+        accessor: 'name',
+      }, {
+        Header: 'Categories',
+        accessor: 'categories',
+      }
+    ]
+
     return (
         <Grid container spacing={24}>
           <Grid item xs>
@@ -119,9 +133,31 @@ class DbAdmin extends Component {
               />
             </Paper>
           </Grid>
-          {this.state.selected.length ? (
+          {Object.keys(this.state.selected).find(e => this.state.selected[e] === true) ? (
             <Grid item xs>
-            <Paper>xs</Paper>
+            <Paper>
+            <List>
+              {Object.keys(this.state.selected).map(
+                k => {
+                  if (this.state.selected[k] === true) {
+                    const pub = this.state.pubs.find(
+                      e => {
+                        return e._id === k
+                      }
+                    )
+                    return (
+                      <ListItem key={pub._id}>
+                        <strong>
+                          {pub.name}
+                        </strong>
+                    </ListItem>
+                    )
+                  }
+                  
+                }
+              )}
+              </List>
+            </Paper>
           </Grid>
           ) : null}
         </Grid>
