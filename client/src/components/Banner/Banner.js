@@ -15,9 +15,9 @@ const Banner = () => (
         <div className="row center">
           <h4 className="header col s12 white-text light">Find your Buds and start Crawling toward Suds</h4>
         </div>
-        {/* <div className="row center">
-          <a href="http://materializecss.com/getting-started.html" id="download-button" className="btn-large waves-effect waves-light blue lighten-1">Get Started</a>
-        </div> */}
+        <div className="row center">
+          <a href="/Login" id="download-button" className="btn-large waves-effect waves-light blue lighten-1">Login</a>
+        </div>
         <br /><br />
 
       </div>
