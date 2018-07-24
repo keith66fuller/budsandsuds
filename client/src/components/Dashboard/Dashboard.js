@@ -1,42 +1,42 @@
-import React, { Component } from "react";
+import React from "react";
 
 const Dashboard = () => (
-<div class="container">
-    <div class="section">
+<div className="container">
+    <div className="section">
 
          {/* Icon Section     */}
-      <div class="row">
+      <div className="row">
 
-        <div class="col s12 m6">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons "><a href="/Buds">people</a></i></h2>
-            <h5 class="center">Buds</h5>
+        <div className="col s12 m6">
+          <div className="icon-block">
+            <h2 className="center brown-text"><i className="material-icons "><a href="/Buds">people</a></i></h2>
+            <h5 className="center">Buds</h5>
             {/* <a id="logo-container" href="/Buds" className="brand-logo gold-text">Buds</a> */}
-            {/* <p class="light ">Search a set of pre-made bar crawls submitted by previous users.</p> */}
+            {/* <p className="light ">Search a set of pre-made bar crawls submitted by previous users.</p> */}
           </div>
         </div>
 
-        <div class="col s12 m6">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons"><a href="/Pubs">local_bar</a></i></h2>
-            <h5 class="center">Pubs</h5>
-            {/* <p class="light">Search for bars and create customized bar crawls that suit your own needs and interests.</p> */}
+        <div className="col s12 m6">
+          <div className="icon-block">
+            <h2 className="center brown-text"><i className="material-icons"><a href="/Pubs">local_bar</a></i></h2>
+            <h5 className="center">Pubs</h5>
+            {/* <p className="light">Search for bars and create customized bar crawls that suit your own needs and interests.</p> */}
           </div>
         </div>
 
-        <div class="col s12 m6">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons"><a href="/Crawls">directions_walk</a></i></h2>
-            <h5 class="center">Crawls</h5>
-            {/* <p class="light">Create an account and set your personal preferences.</p> */}
+        <div className="col s12 m6">
+          <div className="icon-block">
+            <h2 className="center brown-text"><i className="material-icons"><a href="/Crawls">directions_walk</a></i></h2>
+            <h5 className="center">Crawls</h5>
+            {/* <p className="light">Create an account and set your personal preferences.</p> */}
           </div>
         </div>
 
-        <div class="col s12 m6">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons"><a href="/Profile">face</a></i></h2>
-            <h5 class="center">Profile</h5>
-            {/* <p class="light">Picture of beer goes here.</p> */}
+        <div className="col s12 m6">
+          <div className="icon-block">
+            <h2 className="center brown-text"><i className="material-icons"><a href="/Profile">face</a></i></h2>
+            <h5 className="center">Profile</h5>
+            {/* <p className="light">Picture of beer goes here.</p> */}
           </div>
         </div>
 

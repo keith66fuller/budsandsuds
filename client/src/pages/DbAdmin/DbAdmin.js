@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ReactTable from "react-table";
 import 'react-table/react-table.css';
-import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import API from "../../utils/API";
@@ -58,17 +57,6 @@ class DbAdmin extends Component {
   
   render() {
 
-    const styles = theme => ({
-      root: {
-        flexGrow: 1,
-      },
-      paper: {
-        padding: theme.spacing.unit * 2,
-        textAlign: 'left',
-        color: theme.palette.text.secondary,
-      },
-    });
-
     const columns = [
       {
         Header: 'Pub',
@@ -88,16 +76,6 @@ class DbAdmin extends Component {
             {row.value}
           </div>
         )
-      }
-    ]
-
-    const columnsSel = [
-      {
-        Header: 'Pub',
-        accessor: 'name',
-      }, {
-        Header: 'Categories',
-        accessor: 'categories',
       }
     ]
 
@@ -138,22 +116,18 @@ class DbAdmin extends Component {
             <Paper>
             <List>
               {Object.keys(this.state.selected).map(
-                k => {
-                  if (this.state.selected[k] === true) {
-                    const pub = this.state.pubs.find(
-                      e => {
-                        return e._id === k
-                      }
-                    )
-                    return (
-                      <ListItem key={pub._id}>
-                        <strong>
-                          {pub.name}
-                        </strong>
-                    </ListItem>
-                    )
-                  }
+                function(k) {
+                  const pub = this.state.pubs.find(
+                    e => { return e._id === k }
+                  )
                   
+                  return (this.state.selected[k] === true) && pub ? (
+                    <ListItem key={pub._id}>
+                      <strong>
+                        {pub.name}
+                      </strong>
+                  </ListItem>
+                  ) : null
                 }
               )}
               </List>

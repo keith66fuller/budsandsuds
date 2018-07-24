@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import Maps from "../../components/Maps";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import { withStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import API from "../../utils/API";
-import { List, ListItem } from "../../components/List";
 
 const styles = theme => ({
   root: {
@@ -47,9 +44,6 @@ class Pubs extends Component {
   constructor(props) {
     super(props);
     this.classes = props;
-    const propTypes = {
-      classes: PropTypes.object.isRequired
-    };
     this.state = {
       pubs: [],
       selected: {},
@@ -61,17 +55,21 @@ class Pubs extends Component {
   toggleRow(_id) {
     const newSelected = Object.assign({}, this.state.selected);
     newSelected[_id] = !this.state.selected[_id];
-    const markers = Object.keys(newSelected).map(
+    const markers = Object.keys(newSelected)
+    .filter(k => newSelected[k] === true)
+    .map(
       k => {
-        if (newSelected[k] === true) {
-          const pub = this.state.pubs.find(
-            e => {
-              return e._id === k
-            }
-          )
-          return (pub)
-        }
-
+        const pub = this.state.pubs.find(
+          e => {
+            return e._id === k
+          }
+        )
+        // A Yelp Pub object is very large.  Map only needs a subset of keys from it.
+        return pub ? ({
+          name: pub.name,
+          coordinates: pub.coordinates
+        }) : null
+          
       }
     )
     this.setState({
@@ -80,7 +78,6 @@ class Pubs extends Component {
       markers: markers
     });
 
-    if (this.markers) { console.log(`MARKERS: ${JSON.stringify(this.markers,null,2)}`)}
   }
   toggleSelectAll() {
     let newSelected = {};
@@ -147,25 +144,6 @@ class Pubs extends Component {
         )
       }
     ];
-
-    const columnsSel = [
-      {
-        Header: "Pub",
-        accessor: "name"
-      },
-      {
-        Header: "Categories",
-        accessor: "categories"
-      }
-    ];
-
-    const pubsSelected = Object.keys(this.state.selected).find(
-      e => this.state.selected[e] === true
-    );
-
-    const classes = this.classes;
-
-
 
     return (
       <Grid container styles={styles.outerContainer} spacing={24}>

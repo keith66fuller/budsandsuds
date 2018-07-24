@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 const Buds = () => (
         <div class="col s12 m6">

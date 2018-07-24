@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 const imageStyle = {
   transform: "translate3d(-50%, 479.732px, 0px)",
