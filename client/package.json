@@ -5,6 +5,7 @@
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "@material-ui/core": "^1.4.0",
+    "@material-ui/icons": "^2.0.0",
     "@types/react-leaflet": "^1.1.6",
     "axios": "^0.16.2",
     "google-maps-react": "^2.0.2",
