@@ -1,23 +1,24 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+import * as fbc from 'firebase/firebasecred';
 
 const prodConfig = {
-    apiKey: Fire_API_KEY,
-    authDomain: Fire_AUTH_DOMAIN,
-    databaseURL: Fire_DATABASE_URL,
-    projectId: Fire_PROJECT_ID,
-    storageBucket: Fire_STORAGE_BUCKET,
-    messagingSenderId: Fire_MESSAGE_SENDER_ID
+    apiKey: fbc.Fire_API_KEY,
+    authDomain: fbc.Fire_AUTH_DOMAIN,
+    databaseURL: fbc.Fire_DATABASE_URL,
+    projectId: fbc.Fire_PROJECT_ID,
+    storageBucket: fbc.Fire_STORAGE_BUCKET,
+    messagingSenderId: fbc.Fire_MESSAGE_SENDER_ID
 };
 
 const devConfig = {
-  apiKey: Fire_API_KEY,
-  authDomain: Fire_AUTH_DOMAIN,
-  databaseURL: Fire_DATABASE_URL,
-  projectId: Fire_PROJECT_ID,
-  storageBucket: Fire_STORAGE_BUCKET,
-  messagingSenderId: Fire_MESSAGE_SENDER_ID
+  apiKey: fbc.Fire_API_KEY,
+    authDomain: fbc.Fire_AUTH_DOMAIN,
+    databaseURL: fbc.Fire_DATABASE_URL,
+    projectId: fbc.Fire_PROJECT_ID,
+    storageBucket: fbc.Fire_STORAGE_BUCKET,
+    messagingSenderId: fbc.Fire_MESSAGE_SENDER_ID
 };
 
 const config = process.env.NODE_ENV === 'production'
