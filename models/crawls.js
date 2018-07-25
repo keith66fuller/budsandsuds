@@ -16,7 +16,6 @@ const crawlsSchema = new Schema({
     ref: "Buds"
     },
   crawlDate: {type: Date} ,
-  crawlTime: {type: Timestamp},
   reviews: [{
                 reviewer: {
                   type: Schema.Types.ObjectId,
