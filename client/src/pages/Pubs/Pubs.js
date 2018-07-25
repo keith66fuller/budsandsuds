@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import { withStyles } from "@material-ui/core/styles";
@@ -10,8 +11,35 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom'
+import Modal from '@material-ui/core/Modal';
+import { Link } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
 
+
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+  const top = 1;
+  const left = 1;
+
+  return {
+    // top: `${top}%`,
+    // left: `${left}%`,
+    position: 'relative',
+    width: 200,
+    height: 100,
+
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+
+    // transform: `translate(-${top}%, -${left}%)`,
+  };
+}
 
 
 const styles = theme => ({
@@ -61,6 +89,15 @@ const styles = theme => ({
   }
 });
 
+const modalStyles = theme => ({
+  paper: {
+    position: 'absolute',
+    width: theme.spacing.unit * 50,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 4,
+  },
+});
 class Pubs extends Component {
   constructor(props) {
     super(props);
@@ -69,11 +106,22 @@ class Pubs extends Component {
       pubs: [],
       selected: {},
       selectAll: 0,
-      markers: []
+      markers: [],
+      modalOpen: false
     };
     this.toggleRow = this.toggleRow.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
+    this.handleModalOpen = this.handleModalOpen.bind(this);
   }
+
+  handleModalOpen = (e) => {
+    e.preventDefault();
+    this.setState({ modalOpen: true });
+  };
+
+  handleModalClose = () => {
+    this.setState({ modalOpen: false });
+  };
 
   pubList() {
     return JSON.stringify(Object.keys(this.state.selected))
@@ -213,6 +261,45 @@ class Pubs extends Component {
         />
       </Grid>
       <Grid item xs={6} styles={styles.item}>
+        {
+          Object.keys(this.state.selected).length ?
+            <div> 
+              <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  onClick={(event) => this.handleModalOpen(event)}
+              >
+                {/* <Link to={'/Crawls?'+this.pubList()}>New Crawl</Link> */}
+                New Crawl
+              </Button>
+              <Modal
+                 aria-labelledby="simple-modal-title"
+                 aria-describedby="simple-modal-description"
+                 open={this.state.modalOpen}
+                 onClose={this.handleModalClose}
+                 height={50}
+                 width={50}
+                 container={this}
+               >
+                 <div
+                 style={getModalStyle()}
+                 className={classes.paper}>
+                   <Typography variant="title" id="modal-title">
+                     Text in a modal
+                   </Typography>
+                   <Typography variant="subheading" id="simple-modal-description">
+                     Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                   </Typography>
+                   {/* <SimpleModalWrapped /> */}
+                 </div>
+               </Modal>
+               </div>
+              : null
+        }
+
+     
+
         <GridList cellHeight={160} className={classes.gridList} cols={3}>
             {this.state.pubs.map(pub => (
                 this.state.selected[pub._id] ? (
@@ -226,20 +313,17 @@ class Pubs extends Component {
                 ) : null 
             ))}
         </GridList>
-        {Object.keys(this.state.selected).length ? 
-            <Button
-                variant="contained"
-                color="primary"
-                className={classes.button}
-                onClick={this.goCreateCrawl()}
-            >
-              <Link to={'/Crawls?'+this.pubList()}>New Crawl</Link>
-            </Button>
-            : null }
     </Grid>
   </Grid>
       );
   }
 }
+
+Pubs.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+// // We need an intermediary variable for handling the recursive nesting.
+const SimpleModalWrapped = withStyles(styles)(Pubs);
 
 export default withStyles(styles)(Pubs);
