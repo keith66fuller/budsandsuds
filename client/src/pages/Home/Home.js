@@ -3,8 +3,6 @@ import Banner from "../../components/Banner";
 import Dashboard from "../../components/Dashboard";
 import Message from "../../components/Message";
 import Welcome from "../../components/Welcome";
-import { Link } from 'react-router';
-
 class Home extends Component {
 
   render() {
