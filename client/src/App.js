@@ -7,26 +7,38 @@ import Footer from "./components/Footer";
 import Buds from "./pages/Buds";
 import Crawls from "./pages/Crawls";
 import Pubs from "./pages/Pubs";
-import DbAdmin from "./pages/DbAdmin";
-// import SearchTest from "./pages/SearchTest/SearchTest";
+
+
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import PasswordForget from "./pages/PasswordForget";
+import Account from "./pages/Account";
+
 
 const App = () => (
   <Router>
     <div>
       <Nav />
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/Home" component={Home} />
-        <Route exact path="/Buds" component={Buds} />
-        <Route exact path="/Crawls" component={Crawls} />
-        {/* <Route exact path="/Test" component={SearchTest} /> */}
-        <Route exact path="/Pubs" component={Pubs} />
-        <Route exact path="/DbAdmin" component={DbAdmin} />
+        <Route exact path="/" component={SignIn} />
+
+        <Route exact path="/signin" component={SignIn} />
+        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/pw-forget" component={PasswordForget} />
+        <Route exact path="/account" component={Account} />
+
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/buds" component={Buds} />
+        <Route exact path="/crawls" component={Crawls} />
+        <Route exact path="/pubs" component={Pubs} />
+
         <Route component={NoMatch} />
       </Switch>
       <Footer />
     </div>
   </Router>
 );
+
+// export default withAuthentication(App);
 
 export default App;
