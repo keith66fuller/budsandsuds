@@ -4,6 +4,7 @@ import CrawlsComp from "../../components/CrawlsComp";
 import NewCrawl from "../../components/NewCrawl";
 import CrawlListItem from "../../components/CrawlListItem";
 import { Link } from 'react-router';
+import Footer from "../../components/Footer";
 
 
 class Crawls extends Component {

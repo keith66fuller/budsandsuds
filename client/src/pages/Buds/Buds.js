@@ -8,6 +8,7 @@ class Buds extends Component {
       <React.Fragment>
         <Banner />
         <BudsComp />
+        {/* <Footer /> */}
       </React.Fragment>
     )
   }
