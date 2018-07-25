@@ -11,9 +11,21 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import Button from '@material-ui/core/Button';
-import Modal from '@material-ui/core/Modal';
+import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
+import CreateCrawl from "./CreateCrawl"
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 
 
 function rand() {
@@ -112,6 +124,7 @@ class Pubs extends Component {
     this.toggleRow = this.toggleRow.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
     this.handleModalOpen = this.handleModalOpen.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
   }
 
   handleModalOpen = (e) => {
@@ -119,10 +132,14 @@ class Pubs extends Component {
     this.setState({ modalOpen: true });
   };
 
-  handleModalClose = () => {
+  handleModalClose = (e) => {
+    e.preventDefault();
     this.setState({ modalOpen: false });
   };
-
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    this.subtitle.style.color = '#f00';
+  }
   pubList() {
     return JSON.stringify(Object.keys(this.state.selected))
   }
@@ -274,25 +291,17 @@ class Pubs extends Component {
                 New Crawl
               </Button>
               <Modal
-                 aria-labelledby="simple-modal-title"
-                 aria-describedby="simple-modal-description"
-                 open={this.state.modalOpen}
-                 onClose={this.handleModalClose}
-                 height={50}
-                 width={50}
-                 container={this}
-               >
-                 <div
-                 style={getModalStyle()}
-                 className={classes.paper}>
-                   <Typography variant="title" id="modal-title">
-                     Text in a modal
-                   </Typography>
-                   <Typography variant="subheading" id="simple-modal-description">
-                     Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                   </Typography>
-                   {/* <SimpleModalWrapped /> */}
-                 </div>
+                ariaHideApp={false}
+                isOpen={this.state.modalOpen}
+                // onAfterOpen={this.afterOpenModal}
+                onRequestClose={(event) => this.handleModalClose(event)}
+                style={customStyles}
+                contentLabel="Example Modal"
+              >
+              <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
+              <button onClick={this.handleModalClose}>close</button>
+              <div>I am a modal</div>
+              <CreateCrawl/>
                </Modal>
                </div>
               : null
