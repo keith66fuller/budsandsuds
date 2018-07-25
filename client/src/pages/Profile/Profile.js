@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import Banner from "../../components/Banner";
-import PubsComp from "../../components/PubsComp";
-import Maps from "../../components/Maps";
+import ProfileComp from "../../components/ProfileComp";
 import { Link } from 'react-router';
 
-class Pubs extends Component {
+
+class Profile extends Component {
 
   render() {
     return (
       <React.Fragment>
         <Banner />
-        <PubsComp />
-        <Maps />
+        <ProfileComp />
       </React.Fragment>
     )
   }
 
 };
 
-export default Pubs;
+
+export default Profile;
