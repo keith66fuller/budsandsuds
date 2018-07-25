@@ -16,6 +16,7 @@
     "react-leaflet": "^2.0.0",
     "react-leaflet-points-map": "^0.0.1",
     "react-map-gl": "^3.3.2",
+    "react-modal": "^3.5.1",
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.14",
     "react-store-locator": "^0.12.6",
