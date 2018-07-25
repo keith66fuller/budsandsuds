@@ -5,7 +5,7 @@ const Crawls = () => (
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">directions_walk</i></h2>
             <h5 class="center">Crawls</h5>
-            {/* <p class="light">Create an account and set your personal preferences.</p> */}
+            <p class="light center">Find and create all the great crawls</p>
           </div>
         </div>
 )
