@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const budSchema = new Schema({
-  username: { type: String },
-  firstName: { type: String },
-  lastName: { type: String },
-  loginProvider: { type: String },
-  email: String,
-  photo: String,
+  username: { type: Schema.Types.String },
+  firstName: { type: Schema.Types.String },
+  lastName: { type: Schema.Types.String },
+  loginProvider: { type: Schema.Types.String },
+  email: Schema.Types.String,
+  photo: Schema.Types.String,
   favoriteDrinks: {
     type: Schema.Types.ObjectId,
     ref: "Drink"
@@ -24,8 +24,8 @@ const budSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Crawls"
     },
-  active: Boolean,
-  dateCreated: { type: Date, default: Date.now }
+  active: Schema.Types.Boolean,
+  dateCreated: { type: Schema.Types.Date, default: Date.now }
 });
 
 const Bud = mongoose.model("Bud", budSchema);
