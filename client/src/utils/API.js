@@ -17,4 +17,20 @@ export default {
   savepub: function(pubData) {
     return axios.post("/api/pub", pubData);
   },
+  // Gets all crawls
+  getcrawls: function() {
+    return axios.get("/api/crawl");
+  },
+  // Gets the crawl with the given id
+  getcrawl: function(id) {
+    return axios.get("/api/crawl/" + id);
+  },
+  // Deletes the crawl with the given id
+  deletecrawl: function(id) {
+    return axios.delete("/api/crawl/" + id);
+  },
+  // Saves a crawl to the database
+  savecrawl: function(crawlData) {
+    return axios.post("/api/crawl", crawlData);
+  },
 };

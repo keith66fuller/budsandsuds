@@ -7,7 +7,7 @@ class GoogleMapsContainer extends React.Component {
     this.state = {
       showingInfoWindow: false,
       activeMarker: {},
-      selectedPlace: {}
+      selectedPlace: {},
     }
     // binding this to event-handler functions
     this.onMarkerClick = this.onMarkerClick.bind(this);
@@ -28,43 +28,48 @@ class GoogleMapsContainer extends React.Component {
       });
     }
   }
+
+  doMarkers = (markers) =>  {
+    return markers.forEach(marker => {
+    if (marker)  {console.log(`MARKER 51: ${JSON.stringify(marker,null,2)}`)}
+      return (
+        <Marker
+          onClick = { this.onMarkerClick }
+          title = { marker.name }
+          position = {{ lat: marker.coordinates.latitude, lng: marker.coordinates.longitude }}
+          name = { marker.name }
+        />
+      )
+    })
+  }
+
   render() {
     const style = {
-      width: '50vw',
-      height: '75vh',
+      width: '100%',
+      height: '80%',
       'marginLeft': 'auto',
       'marginRight': 'auto'
     }
+
+    const myMarkers = this.doMarkers(this.props.markers);
+
     return (
       <Map
         item
-        xs = { 12 }
+        xs = { 6 }
         style = { style }
         google = { this.props.google }
         onClick = { this.onMapClick }
         zoom = { 12 }
         initialCenter = {{ lat: 41.8781, lng: -87.6298 }}
+        markers = {this.props.markers}
+        myMarkers =  {this.doMarkers(this.props.markers)}
       >
-        <Marker
-          onClick = { this.onMarkerClick }
-          title = { "Timothy O' Tooles" }
-          position = {{ lat: 41.8933, lng: -87.6205 }}
-          name = { "Timothy O' Tooles" }
-        />
-        <InfoWindow
-          marker = { this.state.activeMarker }
-          visible = { this.state.showingInfoWindow }
-        >
-          <div>
-              Timothy O'Toole's <br />
-              622 N Fairbanks Ct, Chicago, IL 60611 <br />
-              (312) 642-0700
-          </div>
-        </InfoWindow>
+      {myMarkers}
       </Map>
     );
   }
 }
 export default GoogleApiWrapper({
-    api: (process.env.AIzaSyCknAKZwXlq4aYDzhOtqK3EDK2nDk5e7Uw)
+    apiKey: ("AIzaSyA4alij427ghn6P9zkGfkygvoKWwatWpu4"),
 })(GoogleMapsContainer)
