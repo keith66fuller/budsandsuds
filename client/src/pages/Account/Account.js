@@ -4,6 +4,7 @@ import AuthUserContext from '../../components/firebaseComp/AuthUserContext';
 import { PasswordForgetForm } from '../PasswordForget/PasswordForget';
 import PasswordChangeForm from '../../components/firebaseComp/PasswordChange';
 import withAuthorization from '../../components/firebaseComp/withAuthorization';
+import SignOutButton from '../../components/firebaseComp/SignOut';
 
 const AccountPage = () =>
   <AuthUserContext.Consumer>
@@ -12,6 +13,7 @@ const AccountPage = () =>
         <h1>Account: {authUser.email}</h1>
         <PasswordForgetForm />
         <PasswordChangeForm />
+        <SignOutButton />
       </div>
     }
   </AuthUserContext.Consumer>

@@ -13,6 +13,8 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import PasswordForget from "./pages/PasswordForget";
 import Account from "./pages/Account";
+import withAuthentication from "./components/firebaseComp/withAuthentication"
+import * as routes from "./constants/routes";
 
 
 const App = () => (
@@ -20,7 +22,7 @@ const App = () => (
     <div>
       <Nav />
       <Switch>
-        <Route exact path="/" component={SignIn} />
+        <Route exact path="/" component={Home} />
 
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/signup" component={SignUp} />
@@ -39,6 +41,5 @@ const App = () => (
   </Router>
 );
 
-// export default withAuthentication(App);
-
-export default App;
+export default withAuthentication(App);
+// export default App;
