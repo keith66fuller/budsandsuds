@@ -5,7 +5,10 @@ const Profile = () => (
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">face</i></h2>
             <h5 class="center">Profile</h5>
-            {/* <p class="light ">Search a set of pre-made bar crawls submitted by previous users.</p> */}
+            <p class="light center">Your preferences and favorite things.</p>
+              <div calsssName="center">
+              
+              </div>
           </div>
         </div>
 )

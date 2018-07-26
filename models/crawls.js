@@ -9,7 +9,7 @@ const crawlsSchema = new Schema({
   name: { type: Schema.Types.String},
   createdBy: {
     type: Schema.Types.ObjectId,
-    ref: "Buds"
+    ref: "buds"
     },
   pubs: [{
     type: Schema.Types.ObjectId,
@@ -17,8 +17,10 @@ const crawlsSchema = new Schema({
     }],
   buds: {
     type: Schema.Types.ObjectId,
-    ref: "Buds"
+    ref: "buds"
     },
+  crawlDate: {type: Schema.Types.Date} ,
+  crawlTime: {type: Schema.Types.Date},
   reviews: [{
                 reviewer: {
                   type: Schema.Types.ObjectId,

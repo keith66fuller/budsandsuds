@@ -31,7 +31,6 @@ export default {
   },
   // Saves a crawl to the database
   savecrawl: function(crawlData) {
-    console.log(`CRAWLDATA: ${JSON.stringify(crawlData,null,2)}`)
     return axios.post("/api/crawl", crawlData);
   },
 };

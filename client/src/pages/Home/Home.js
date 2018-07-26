@@ -13,6 +13,7 @@ class Home extends Component {
         <Message image="./images/background6.jpg" alt="Unsplashed background img 6" />
         <Welcome />
         <Message image="./images/background5.jpg" alt="Unsplashed background img 5" />
+        {/* <Footer /> */}
       </React.Fragment>
     )
   }

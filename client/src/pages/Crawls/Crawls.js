@@ -24,8 +24,8 @@ class Crawls extends Component {
 
   render() {
     const { crawls } = this.state
-    
-    return crawls.length ? 
+
+    return crawls.length ?
       <Infinite containerHeight={1080} elementHeight={40}>
         {crawls.map(crawl => <CrawlCard key={crawl._id} crawl={crawl}/> )}
       </Infinite>
