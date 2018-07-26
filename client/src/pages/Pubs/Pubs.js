@@ -119,14 +119,21 @@ class Pubs extends Component {
       selected: {},
       selectAll: 0,
       markers: [],
-      modalOpen: false
+      modalOpen: false,
+      newCrawlName: '',
     };
     this.toggleRow = this.toggleRow.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
     this.handleModalOpen = this.handleModalOpen.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
+    this.crawlInput = this.crawlInput.bind(this);
   }
 
+  crawlInput = (e) => {
+    this.setState({
+      newCrawlName: e.target.value
+  });
+  }
   handleModalOpen = (e) => {
     e.preventDefault();
     this.setState({ modalOpen: true });
@@ -135,6 +142,14 @@ class Pubs extends Component {
   handleModalClose = (e) => {
     e.preventDefault();
     this.setState({ modalOpen: false });
+    API.savecrawl({
+      name: this.state.newCrawlName,
+      pubs: Object.keys(this.state.selected)
+    })
+    .then(res => {
+      console.log(`Crawl Saved: ${res.data}`)
+    })
+    .catch(err => console.log(err));
   };
   afterOpenModal() {
     // references are now sync'd and can be accessed.
@@ -298,10 +313,11 @@ class Pubs extends Component {
                 style={customStyles}
                 contentLabel="Example Modal"
               >
-              <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-              <button onClick={this.handleModalClose}>close</button>
-              <div>I am a modal</div>
-              <CreateCrawl/>
+              <h2 ref={subtitle => this.subtitle = subtitle}>Create New Crawl</h2>
+              # of Pubs {Object.keys(this.state.selected).length}
+              <br/>
+              <CreateCrawl onChange={this.crawlInput}/>
+              <button onClick={this.handleModalClose}>Create</button>
                </Modal>
                </div>
               : null

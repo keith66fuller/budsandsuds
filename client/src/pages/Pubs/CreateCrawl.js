@@ -23,14 +23,14 @@ const TextFieldMargins = props => {
   return (
     <div className={classes.container}>
      <TextField
-        label="Normal"
+        label="Crawl Name"
         id="margin-normal"
-        defaultValue="Default Value"
+        // defaultValue="Default Value"
         className={classes.textField}
-        helperText="Some important text"
+        // helperText="Some important text"
         margin="normal"
+        onChange={(event) => props.onChange(event)}
       />
-      <Button/>
     </div>
   );
 };

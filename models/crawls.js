@@ -1,12 +1,16 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+
+mongoose.set('debug', true)
+
+
 const crawlsSchema = new Schema({
   name: { type: String},
   createdBy: { type: Object},
   pubs: {
     type: Schema.Types.ObjectId,
-    ref: "Pubs"
+    ref: "pubs"
     },
   buds: {
     type: Schema.Types.ObjectId,

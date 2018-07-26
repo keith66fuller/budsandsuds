@@ -6,6 +6,10 @@ const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+
+// Only for logging all Mongoose calls
+mongoose.set('debug', true)
+
 // Define middleware here
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
