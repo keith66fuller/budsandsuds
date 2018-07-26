@@ -1,26 +1,36 @@
 import React, { Component } from "react";
-import Banner from "../../components/Banner";
-import CrawlsComp from "../../components/CrawlsComp";
-import NewCrawl from "../../components/NewCrawl";
-import CrawlListItem from "../../components/CrawlListItem";
-import { Link } from 'react-router';
-import Footer from "../../components/Footer";
-
+import CrawlCard from "../../components/CrawlCard";
+import API from "../../utils/API";
+import Infinite from "react-infinite"
 
 class Crawls extends Component {
-
-  render() {
-    return (
-      <React.Fragment>
-        <Banner />
-        {/* <CrawlsComp />  */}
-        <CrawlListItem />
-        <CrawlListItem />
-        {/* <NewCrawl /> */}
-      </React.Fragment>
-    )
+  constructor(props) {
+    super(props);
+    this.state = { crawls: [] }
+  }
+  componentDidMount() {
+    this.loadCrawls();
   }
 
+  loadCrawls = () => {
+    API.getcrawls()
+      .then(res => {
+        this.setState({
+          crawls: res.data
+        });
+      })
+      .catch(err => console.log(err));
+    };
+
+  render() {
+    const { crawls } = this.state
+    
+    return crawls.length ? 
+      <Infinite containerHeight={1080} elementHeight={40}>
+        {crawls.map(crawl => <CrawlCard key={crawl._id} crawl={crawl}/> )}
+      </Infinite>
+    : null
+  }
 };
 
 export default Crawls;
