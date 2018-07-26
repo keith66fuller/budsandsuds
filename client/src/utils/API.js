@@ -17,4 +17,12 @@ export default {
   savepub: function(pubData) {
     return axios.post("/api/pub", pubData);
   },
+
+  getcrawls: function() {
+    return axios.post("/api/crawl");
+  },
+
+  savecrawl: function(crawlData) {
+    return axios.post("/api/crawl", crawlData);
+  },
 };
