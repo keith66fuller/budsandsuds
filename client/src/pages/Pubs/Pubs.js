@@ -5,15 +5,11 @@ import "react-table/react-table.css";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import API from "../../utils/API";
-import PubCard from "../../components/PubCard";
-import DropDownMenu from "../../components/DropDownMenu";
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import Button from '@material-ui/core/Button';
 import Modal from 'react-modal';
-import { Link } from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
 import CreateCrawl from "./CreateCrawl"
 
 const customStyles = {
@@ -27,31 +23,6 @@ const customStyles = {
   }
 };
 
-
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 1;
-  const left = 1;
-
-  return {
-    // top: `${top}%`,
-    // left: `${left}%`,
-    position: 'relative',
-    width: 200,
-    height: 100,
-
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-
-
-    // transform: `translate(-${top}%, -${left}%)`,
-  };
-}
 
 
 const styles = theme => ({
@@ -101,15 +72,6 @@ const styles = theme => ({
   }
 });
 
-const modalStyles = theme => ({
-  paper: {
-    position: 'absolute',
-    width: theme.spacing.unit * 50,
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing.unit * 4,
-  },
-});
 class Pubs extends Component {
   constructor(props) {
     super(props);
@@ -163,8 +125,8 @@ class Pubs extends Component {
   }
 
   goCreateCrawl() {
-      const pubs = this.state.pubs.map(pub => this.state.selected[pub._id] ? pub : null )
-      return 
+    return this.state.pubs.map(pub => this.state.selected[pub._id] ? pub : null )
+       
   }
   toggleRow(_id) {
     const newSelected = Object.assign({}, this.state.selected);
@@ -347,8 +309,5 @@ class Pubs extends Component {
 Pubs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
-// // We need an intermediary variable for handling the recursive nesting.
-const SimpleModalWrapped = withStyles(styles)(Pubs);
 
 export default withStyles(styles)(Pubs);

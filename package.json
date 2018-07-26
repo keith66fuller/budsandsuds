@@ -28,6 +28,7 @@
     "express": "^4.15.4",
     "if-env": "^1.0.4",
     "mongoose": "^5.2.4",
+    "react-infinite": "^0.13.0",
     "yarn": "^1.7.0",
     "yelp-fusion": "^2.0.3"
   },
