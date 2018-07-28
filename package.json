@@ -1,5 +1,5 @@
 {
-  "name": "budsandsuds",
+  "name": "k66nytreact",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -33,6 +33,6 @@
     "yarn": "^1.7.0",
     "yelp-fusion": "^2.0.3"
   },
-  "repository": "https://github.com/allYourBase-AreBelongToUs/budsandsuds.git",
+  "repository": "https://github.com/keith66fuller/k66nytreact.git",
   "private": false
 }
