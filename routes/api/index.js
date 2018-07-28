@@ -1,10 +1,6 @@
 const router = require("express").Router();
-const budRoutes = require("./bud");
-const crawlRoutes = require("./crawl");
-const pubRoutes = require("./pub");
+const articleRoutes = require("./article");
 
-router.use("/bud", budRoutes);
-router.use("/crawl", crawlRoutes);
-router.use("/pub", pubRoutes);
+router.use("/article", articleRoutes);
 
 module.exports = router;
