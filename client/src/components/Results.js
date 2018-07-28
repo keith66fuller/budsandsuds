@@ -8,70 +8,69 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Switch from '@material-ui/core/Switch';
-import WifiIcon from '@material-ui/icons/Wifi';
-import BluetoothIcon from '@material-ui/icons/Bluetooth';
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
+import SaveIcon from '@material-ui/icons/Save';
+import classNames from 'classnames';
+
+
+
 
 const styles = theme => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+  container: {
+    alignItems: 'center',
+    textalign: 'center',
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: 'column'
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  leftIcon: {
+    marginRight: theme.spacing.unit,
+  },
+  rightIcon: {
+    marginLeft: theme.spacing.unit,
+  },
+  iconSmall: {
+    fontSize: 20,
   },
 });
 
 class SwitchListSecondary extends React.Component {
-  state = {
-    checked: [],
-  };
+  constructor (props) {
+    super(props)
+      this.state = {
+        checked: [],
+        results: props.results
+      };
+  }
 
-  handleToggle = value => () => {
-    const { checked } = this.state;
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    this.setState({
-      checked: newChecked,
-    });
+  handleIconClick = value => () => {
+    console.log(`VALUE: ${JSON.stringify(value)}`)
   };
 
   render() {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
-        <List subheader={<ListSubheader>Settings</ListSubheader>}>
-          <ListItem>
-            <ListItemIcon>
-              <WifiIcon />
-            </ListItemIcon>
-            <ListItemText primary="Wi-Fi" />
-            <ListItemSecondaryAction>
-              <Switch
-                onChange={this.handleToggle('wifi')}
-                checked={this.state.checked.indexOf('wifi') !== -1}
-              />
+        <List  dense={true} className={classes.container} subheader={<ListSubheader><h4>Results</h4></ListSubheader>}>
+          {this.props.searchResults.map(article => {
+            return (
+              <ListItem textalign="left" key={article._id}>
+              <ListItemText primary={article.headline.main} />
+              <ListItemSecondaryAction>
+              <Button variant="contained" size="small" className={classes.button} onChange={event => this.handleIconClick(event)}>
+                <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
+                Save
+            </Button>
             </ListItemSecondaryAction>
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <BluetoothIcon />
-            </ListItemIcon>
-            <ListItemText primary="Bluetooth" />
-            <ListItemSecondaryAction>
-              <Switch
-                onChange={this.handleToggle('bluetooth')}
-                checked={this.state.checked.indexOf('bluetooth') !== -1}
-              />
-            </ListItemSecondaryAction>
-          </ListItem>
+            </ListItem>
+            )
+          })}
         </List>
-      </div>
     );
   }
 }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Search from '../components/Search'
+import Results from '../components/Results'
 import Divider from '@material-ui/core/Divider';
 
 const styles = theme => ({
@@ -20,15 +21,25 @@ const styles = theme => ({
 });
 
 class GuttersGrid extends React.Component {
-  state = {
-    spacing: '16',
-  };
+  constructor (props) {
+    super(props)
+      this.state = {
+        checked: [],
+        results: []
+      };
+
+      this.passResults = this.passResults.bind(this);
+  }
 
   handleChange = key => (event, value) => {
     this.setState({
       [key]: value,
     });
   };
+
+  passResults = results => {
+    this.setState({results: results})
+  }
 
   render() {
     const { classes } = this.props;
@@ -37,10 +48,11 @@ class GuttersGrid extends React.Component {
     return (
       <Grid container className={classes.root} spacing={16}>
         <Grid item xs={12}>
-        <Search/>
+        <Search passResults={this.passResults}/>
+        <Divider absolute={true}/>        
         </Grid>
-        <Divider/>        
         <Grid item xs={12}>
+        <Results searchResults={this.state.results}/>
         </Grid>
         <Grid item xs={12}>
         </Grid>
