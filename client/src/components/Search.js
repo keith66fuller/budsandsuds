@@ -33,7 +33,7 @@ class TextFields extends React.Component {
     constructor (props) {
         super(props)
         this.state = {
-          topic: 'Spacex',
+          topic: '',
           startYear: '2017',
           endYear: '2018',
         };
@@ -52,13 +52,6 @@ class TextFields extends React.Component {
      if (parseInt(this.state.startYear,10)) { queryURL += `&begin_date=${this.state.startYear}0101` }
      if (parseInt(this.state.endYear,10))   { queryURL += `&end_date=${this.state.endYear}1231` }
      axios.get(queryURL)
-        // .then(response => {
-        //     response.data.response.docs.forEach(article => {
-        //         API
-        //           .savearticle(article)
-        //           .catch(error => console.log(`API ERROR: ${error.message}`))
-        //     })
-        // })
         .then(response => this.props.passResults(response.data.response.docs))
         .catch(error => console.log(`NYT ERROR: ${error.message}`))
   }

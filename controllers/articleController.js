@@ -16,13 +16,13 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    const article = {
-      _id: req.body._id,
-      title: req.body.headline.main,
-      url: req.body.web_url
-    };
+    // console.log(`CREATING: ${JSON.stringify(req.body)}`)
     db.Article
-      .create(article)
+      .create({
+        _id: req.body._id,
+        title: req.body.headline.main,
+        url: req.body.web_url
+      })
       .then(dbArticle => res.json(dbArticle))
       .catch(err => res.status(422).json(err));
   },

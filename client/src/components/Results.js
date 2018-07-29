@@ -14,9 +14,6 @@ import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import classNames from 'classnames';
 
-
-
-
 const styles = theme => ({
   container: {
     alignItems: 'center',
@@ -46,23 +43,21 @@ class SwitchListSecondary extends React.Component {
         checked: [],
         results: props.results
       };
+
   }
 
-  handleIconClick = value => () => {
-    console.log(`VALUE: ${JSON.stringify(value)}`)
-  };
 
   render() {
     const { classes } = this.props;
 
     return (
         <List  dense={true} className={classes.container} subheader={<ListSubheader><h4>Results</h4></ListSubheader>}>
-          {this.props.searchResults.map(article => {
+          {this.props.searchResults.map((article,idx) => {
             return (
-              <ListItem textalign="left" key={article._id}>
+              <ListItem alignitems="left" key={idx}>
               <ListItemText primary={article.headline.main} />
               <ListItemSecondaryAction>
-              <Button variant="contained" size="small" className={classes.button} onChange={event => this.handleIconClick(event)}>
+              <Button variant="contained" key={idx} size="small" className={classes.button} onClick={() => this.props.saveArticle(idx)}>
                 <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
                 Save
             </Button>
